@@ -1,0 +1,11 @@
+{
+  "name": "studentstash",
+  "version": "1.0.0",
+  "description": "StudentStash is an online ecosystem designed for sustainable living in College. It is an e-commerce and also service trading website. It is a platform that would make students' lives easier.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sofoniyas, Milan",
+  "license": "ISC"
+}
