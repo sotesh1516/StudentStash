@@ -66,7 +66,8 @@ export default function Signup() {
     }
     return (
         <>
-        {user.error && (<div role="alert" className="alert alert-warning max-w-md mx-auto p-2 mt-3 flex items-center justify-center">
+        <div className="flex items-center justify-center">
+        {user.error && (<div role="alert" className="alert alert-warning w-auto p-2 mt-3 inline-flex items-center justify-center">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="h-6 w-6 shrink-0 stroke-current"
@@ -80,6 +81,8 @@ export default function Signup() {
   </svg>
   <span>{message}</span>
 </div>)}
+        </div>
+        
 
         <div className="flex justify-center items-center min-h-screen">
             <div className="w-full max-w-md p-4">
