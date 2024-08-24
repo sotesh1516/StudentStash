@@ -9,8 +9,15 @@ export default function Signup() {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        password: ""
+        password: "",
+        error: false
     })
+
+    //check to see if the email provided by the user is in the proper format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -27,9 +34,11 @@ export default function Signup() {
     
     const handleSubmit = () => {
 
-        if (!newUser.name || !newUser.email || !newUser.password)
+        if (!user.name || !user.email || !user.password)
             {
                 setMessage("All fields are required!")
+                setUser({...user, error: true})
+                return;
             }
         const newUser = {
                 name: user.name,
@@ -37,15 +46,41 @@ export default function Signup() {
                 password: user.password
             }
 
-        if (newUser.password.length < 8)
+        if (newUser.password.length < 8 && newUser.password.length != 0)
             {
-                return "Password must be at least 8 characters long."
+                setMessage("Password must be at least 8 characters long.")
+                setUser({...user, error: true})
+                return;
             }
+        if (!isValidEmail(newUser.email))
+            {
+                setMessage("Incorrect email format!")
+                setUser({...user, error: true})
+                return;
+                
+            }
+        setUser({...user, error: false})
         
         
         
     }
     return (
+        <>
+        {user.error && (<div role="alert" className="alert alert-warning max-w-md mx-auto p-2 mt-3 flex items-center justify-center">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6 shrink-0 stroke-current"
+    fill="none"
+    viewBox="0 0 24 24">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+  </svg>
+  <span>{message}</span>
+</div>)}
+
         <div className="flex justify-center items-center min-h-screen">
             <div className="w-full max-w-md p-4">
                 <label className="input input-bordered flex items-center gap-2 mb-4">
@@ -61,9 +96,11 @@ export default function Signup() {
                     <input type={showPassword ? "text" : "password"} className="grow" placeholder="" name='password' value={user.password} onChange={handleChange}/>
                     <button><img src={eyeImage} alt="Show Password" className="w-6 h-6 cursor-pointer transition duration-300 hover:brightness-210" onClick={reveilPassword} /></button>
                 </label>
-                <button className="btn btn-outline w-full mb-4">Sign Up</button>
+                <button className="btn btn-outline w-full mb-4" onClick={handleSubmit}>Sign Up</button>
                 <p>Already have an account? <Link className="link link-primary" to="/signin">Sign in here</Link></p>
             </div>
         </div>
+        </>
+        
     );
 }
