@@ -1,9 +1,14 @@
+import Product from "./Product";
+
 export default function Dashboard() {
     return (
         <>
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 mt-1">
   <div className="flex-1">
     <a className="btn btn-ghost text-xl">StudentStash</a>
+    <div className="form-control">
+      <input type="text" placeholder="Search" className="input input-bordered ml-6 w-24 md:w-auto" />
+    </div>
   </div>
   <div className="flex-none">
     <div className="dropdown dropdown-end">
@@ -58,6 +63,10 @@ export default function Dashboard() {
       </ul>
     </div>
   </div>
+</div>
+{/* a div to display products */}
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+    <Product/>
 </div>
         
         </>
