@@ -1,4 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Navbar() {
+
+    const navigate = useNavigate();
+
+    function handleCartNavigation(e) {
+        navigate('/cart')
+
+    } 
+
     return (
         <>
             <div className="navbar bg-base-100 mt-1">
@@ -34,7 +44,7 @@ export default function Navbar() {
           <span className="text-lg font-bold">8 Items</span>
           <span className="text-info">Subtotal: $999</span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+            <button className="btn btn-primary btn-block" onClick={handleCartNavigation}>View cart</button>
           </div>
         </div>
       </div>
