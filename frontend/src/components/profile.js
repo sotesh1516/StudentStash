@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import eyeImage from '../images/eye.png';
 import "../style.css";
+import Navbar from './Navbar';
 
 export default function Profile() {
 
@@ -42,6 +43,7 @@ export default function Profile() {
 
     return (
         <>
+            <Navbar/>
             <div className="flex items-center justify-center">
                 {user.error && (
                     <div role="alert" className="alert alert-warning w-auto p-2 mt-3 inline-flex items-center justify-center">

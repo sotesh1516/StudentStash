@@ -14,7 +14,7 @@ export default function Navbar() {
         <>
             <div className="navbar bg-base-100 mt-1">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl">StudentStash</a>
+    <Link className="btn btn-ghost text-xl" to={"/dashboard"}>StudentStash</Link>
     <div className="form-control">
       <input type="text" placeholder="Search" className="input input-bordered ml-6 w-24 md:w-auto" />
     </div>
