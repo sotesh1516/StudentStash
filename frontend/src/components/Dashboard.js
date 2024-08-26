@@ -52,12 +52,7 @@ export default function Dashboard() {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li>
+        <li><a className="justify-between">Profile</a></li>
         <li><a>Settings</a></li>
         <li><a>Logout</a></li>
       </ul>
@@ -65,8 +60,13 @@ export default function Dashboard() {
   </div>
 </div>
 {/* a div to display products */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
     <Product/>
+    <Product/>
+    <Product/>
+    <Product/>
+    <Product/>
+
 </div>
         
         </>
