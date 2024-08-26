@@ -1,4 +1,5 @@
 import Product from "./Product";
+import Footer from "./Footer";
 
 export default function Dashboard() {
     return (
@@ -68,6 +69,7 @@ export default function Dashboard() {
     <Product/>
 
 </div>
+<Footer/>
         
         </>
     )
