@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
 
@@ -60,7 +61,7 @@ export default function Navbar() {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a className="justify-between">Profile</a></li>
+        <li><Link className="justify-between" to="/profile">Profile</Link></li>
         <li><a>Settings</a></li>
         <li><a>Logout</a></li>
       </ul>
