@@ -41,6 +41,12 @@ export default function Signin() {
             password: user.password
         }
 
+        if (newUser.password.length < 8 && newUser.password.length != 0) {
+            setMessage("Password must be at least 8 characters long.")
+            setUser({ ...user, error: true })
+            return;
+        }
+
         if (!isValidEmail(newUser.email)) {
             setMessage("Incorrect email format!")
             setUser({ ...user, error: true })
