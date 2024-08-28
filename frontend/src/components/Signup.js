@@ -96,7 +96,7 @@ export default function Signup() {
                         <input type={showPassword ? "text" : "password"} className="grow" placeholder="" name='password' value={user.password} onChange={handleChange} />
                         <button><img src={eyeImage} alt="Show Password" className="w-6 h-6 cursor-pointer transition duration-300 hover:brightness-210" onClick={reveilPassword} /></button>
                     </label>
-                    <button className="btn btn-outline w-full mb-4" onClick={handleSubmit}>Sign Up</button>
+                    <button className="btn btn-primary w-full mb-4" onClick={handleSubmit}>Sign Up</button>
                     <p>Already have an account? <Link className="link link-primary" to="/signin">Sign in here</Link></p>
                 </div>
             </div>

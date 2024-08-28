@@ -7,7 +7,7 @@ export default function Dashboard() {
         <>
         <Navbar/>
 {/* a div to display products */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mb-5">
     <Product/>
     <Product/>
     <Product/>
