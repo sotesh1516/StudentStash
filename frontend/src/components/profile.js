@@ -1,83 +1,89 @@
-import { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import eyeImage from '../images/eye.png';
-import "../style.css";
-import Navbar from './Navbar';
 
-export default function Profile() {
+const ProfilePage = () => {
+  const [profile, setProfile] = useState({
+    fullName: "Johnatan Smith",
+    email: "example@example.com",
+    password: "",
+  });
 
-    const [user, setUser] = useState({
-        name: "",
-        password: "",
-        error: false
-    });
+  const [showPassword, setShowPassword] = useState(false);
 
-    const [showPassword, setShowPassword] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfile({ ...profile, [name]: value });
+  };
 
-    const [message, setMessage] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission, e.g., update the profile data
+    console.log("Updated Profile:", profile);
+  };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setUser({ ...user, [name]: value });
-    };
-
-    const revealPassword = () => {
-        setShowPassword(prev => !prev);
-    };
-
-    const handleSubmit = () => {
-        if (!user.name || !user.password) {
-            setMessage("Both fields are required!");
-            setUser({ ...user, error: true });
-            return;
-        }
-
-        if (user.password.length < 8) {
-            setMessage("Password must be at least 8 characters long.");
-            setUser({ ...user, error: true });
-            return;
-        }
-
-        setUser({ ...user, error: false });
-        // Handle the update logic here (e.g., sending the data to a backend service)
-    };
-
-    return (
-        <>
-            <Navbar/>
-            <div className="flex items-center justify-center">
-                {user.error && (
-                    <div role="alert" className="alert alert-warning w-auto p-2 mt-3 inline-flex items-center justify-center">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6 shrink-0 stroke-current"
-                            fill="none"
-                            viewBox="0 0 24 24">
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                        <span>{message}</span>
-                    </div>
-                )}
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-base-200">
+      <div className="card w-full max-w-md p-6 bg-base-100 shadow-lg rounded-lg">
+        <h2 className="text-2xl font-semibold mb-6">Update Profile</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="label">
+              <span className="label-text">Full Name</span>
+            </label>
+            <input
+              type="text"
+              name="fullName"
+              value={profile.fullName}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={profile.email}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={profile.password}
+                onChange={handleChange}
+                className="input input-bordered w-full"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 px-4 py-2 focus:outline-none"
+              >
+                <img src={eyeImage} alt="Show Password" className="w-6 h-6 cursor-pointer transition duration-300 hover:brightness-150" />
+              </button>
             </div>
+          </div>
+          <button className="btn btn-primary w-full mt-4" type="submit">
+            Update Profile
+          </button>
+          <p className="mt-4 text-center">
+            <Link className="link link-primary" to="/dashboard">
+              Go back to Dashboard
+            </Link>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-            <div className="flex justify-center items-center min-h-screen">
-                <div className="w-full max-w-md p-4">
-                    <h3>Name</h3>
-                    <label className="input input-bordered flex items-center gap-2 mb-4">
-                        Name
-                        <input type="text" className="grow" placeholder="" name='name' value={user.name} onChange={handleChange} />
-                    </label>
-                    <label className="input input-bordered flex items-center gap-2 mb-4">
-                        Password
-                        <input type={showPassword ? "text" : "password"} className="grow" placeholder="" name='password' value={user.password} onChange={handleChange} />
-                        <button><img src={eyeImage} alt="Show Password" className="w-6 h-6 cursor-pointer transition duration-300 hover:brightness-210" onClick={revealPassword} /></button>
-                    </label>
-                    <button className="btn btn-outline w-full mb-4" onClick={handleSubmit}>Update Profile</button>
-                </div>
-            </div>
-        </>
-    );
-}
+export default ProfilePage;
