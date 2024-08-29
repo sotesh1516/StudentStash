@@ -1,48 +1,39 @@
 [
     {
-        "image": [
-            "https://example.com/image1-front.jpg",
-            "https://example.com/image1-back.jpg"
-        ],
+        "image": 
+            "./src/imageDB/iphone.jpg",
         "label": "Apple iPhone 13",
         "price": 799.99,
         "condition": "New",
         "description": "The latest iPhone 13 with A15 Bionic chip, 128GB storage, and 6.1-inch Super Retina XDR display. Available in multiple colors."
     },
     {
-        "image": [
-            "https://example.com/laptop-front.jpg",
-            "https://example.com/laptop-keyboard.jpg"
-        ],
+        "image": 
+            "/src/imageDB/dell.jpg",
         "label": "Dell XPS 13",
         "price": 999.99,
         "condition": "Used - Like New",
         "description": "Dell XPS 13 with Intel i7 processor, 16GB RAM, and 512GB SSD. Ultra-thin design, perfect for on-the-go productivity."
     },
     {
-        "image": [
-            "https://example.com/headphones1.jpg"
-        ],
+        "image": 
+            "https://example.com/headphones1.jpg",
         "label": "Sony WH-1000XM4",
         "price": 349.99,
         "condition": "New",
         "description": "Sony's industry-leading noise-cancelling headphones with up to 30 hours of battery life, touch sensor controls, and voice assistant compatibility."
     },
     {
-        "image": [
+        "image": 
             "https://example.com/backpack-front.jpg",
-            "https://example.com/backpack-side.jpg"
-        ],
         "label": "Herschel Little America Backpack",
         "price": 89.99,
         "condition": "New",
         "description": "Herschel's iconic backpack with a classic mountaineering style, featuring a spacious main compartment, padded laptop sleeve, and adjustable drawstring closure."
     },
     {
-        "image": [
+        "image": 
             "https://example.com/book-front.jpg",
-            "https://example.com/book-back.jpg"
-        ],
         "label": "The Catcher in the Rye by J.D. Salinger",
         "price": 10.99,
         "condition": "Used - Good",
