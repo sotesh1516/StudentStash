@@ -1,8 +1,11 @@
 const express = require("express");
+const {connectMongoDb, userCollection, productCollection} = require("../database/connectMongoDB");
 
-const route = express.Router();
+const router = express.Router();
 
-route.post("auth/signup", async (req, res) => {
+connectMongoDb();
+
+router.post("auth/signup", async (req, res) => {
   try {
     var incomingUser = req.body;
     if (
@@ -11,7 +14,7 @@ route.post("auth/signup", async (req, res) => {
       incomingUser.email == undefined ||
       incomingUser.password == undefined
     ) {
-      //pass for now
+      //notify the user that there is a blank section
     }
     if (incomingUser.username.length < 2) {
       //notify the use that the username is not long enough
@@ -28,8 +31,8 @@ route.post("auth/signup", async (req, res) => {
       password: incomingUser.password,
       //add default values for the rest of the properties in the schemaÍ
     };
-
     //check if the username is already taken -> tricky
+    const initialQuery = userCollection.findOne({})
     //check if the user already exists in the database using its email
     //register the user
     //hash the password
@@ -38,6 +41,8 @@ route.post("auth/signup", async (req, res) => {
   } catch (error) {}
 });
 
-route.get("/signin", (req, res) => {});
+router.get("/signin", (req, res) => {});
 
-route.post("/resetPassword", (req, res) => {});
+router.post("/resetPassword", (req, res) => {});
+
+module.exports = router;
