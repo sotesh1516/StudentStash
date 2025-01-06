@@ -28,7 +28,7 @@ router.post("/auth/signup", async (req, res) => {
 
     if (incomingUser.password.length < 8) {
       //notify the user that the password is not long enough
-      res.status(400).json({success: false})
+      res.status(400).json({success: false, message: "Password is must at least 8 charaters long"})
     }
     var emailRegEx = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
     var regExResult = emailRegEx.test(incomingUser.email);
@@ -77,7 +77,9 @@ router.post("/auth/signup", async (req, res) => {
   }
 });
 
-router.get("/signin", (req, res) => {});
+router.get("/signin", (req, res) => {
+  res.send("It works");
+});
 
 router.post("/resetPassword", (req, res) => {});
 
