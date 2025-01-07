@@ -67,7 +67,7 @@ export default function Signup() {
 
         }
         setUser({ ...user, error: false });
-        signup(user.name, user.username, user.email, user.passowrd);
+        signup(user.name, user.username, user.email, user.password);
         
 
 
