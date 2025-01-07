@@ -2,12 +2,14 @@ import { useState } from 'react';
 import eyeImage from '../images/eye.png';
 import "../style.css"
 import { Link } from 'react-router-dom';
+import { signup } from '../api/auth.api';
 
 
 export default function Signup() {
 
     const [user, setUser] = useState({
         name: "",
+        username: "",
         email: "",
         password: "",
         error: false
@@ -34,13 +36,14 @@ export default function Signup() {
 
     const handleSubmit = () => {
 
-        if (!user.name || !user.email || !user.password) {
+        if (!user.name || !user.email || !user.password || !user.username) {
             setMessage("All fields are required!")
             setUser({ ...user, error: true })
             return;
         }
         const newUser = {
             name: user.name,
+            username: user.username,
             email: user.email,
             password: user.password
         }
@@ -50,13 +53,22 @@ export default function Signup() {
             setUser({ ...user, error: true })
             return;
         }
+
+        if (newUser.username.length < 4 && newUser.username.length != 0) {
+            setMessage("Username is too short.")
+            setUser({ ...user, error: true })
+            return;
+        }
+
         if (!isValidEmail(newUser.email)) {
             setMessage("Incorrect email format!")
             setUser({ ...user, error: true })
             return;
 
         }
-        setUser({ ...user, error: false })
+        setUser({ ...user, error: false });
+        signup(user.name, user.username, user.email, user.passowrd);
+        
 
 
 
@@ -86,6 +98,10 @@ export default function Signup() {
                     <label className="input input-bordered flex items-center gap-2 mb-4">
                         Name
                         <input type="text" className="grow" placeholder="" name='name' value={user.name} onChange={handleChange} />
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 mb-4">
+                        Username
+                        <input type="text" className="grow" placeholder="" name='username' value={user.username} onChange={handleChange} />
                     </label>
                     <label className="input input-bordered flex items-center gap-2 mb-4">
                         Email

@@ -19,22 +19,22 @@ router.post("/auth/signup", async (req, res) => {
       incomingUser.password == undefined
     ) {
       //notify the user that there is a blank section
-      res.status(400).json({success: false, message: "One or more fields are missing"});
+      return res.status(400).json({success: false, message: "One or more fields are missing"});
     }
     if (incomingUser.username.length < 2) {
       //notify the user that the username is not long enough
-      res.status(400).json({success: false, message: "Username is not long enough"});
+      return res.status(400).json({success: false, message: "Username is not long enough"});
     }
 
     if (incomingUser.password.length < 8) {
       //notify the user that the password is not long enough
-      res.status(400).json({success: false, message: "Password is must at least 8 charaters long"})
+      return res.status(400).json({success: false, message: "Password is must at least 8 charaters long"})
     }
     var emailRegEx = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
     var regExResult = emailRegEx.test(incomingUser.email);
     if (!regExResult) {
       //notify the user that the email format is not correct
-      res.status(400).json({success: false , message:"email format is incorrect"});
+      return res.status(400).json({success: false , message:"email format is incorrect"});
 
     }
     const newUser = {
@@ -47,7 +47,7 @@ router.post("/auth/signup", async (req, res) => {
     //check if the user already exists in the database using its email
     const initialQuery = await userCollection.findOne({ email: newUser.email });
     if (initialQuery) {
-      res.status(400).json({success: true , message: "email is already taken"});
+      return res.status(400).json({success: true , message: "email is already taken"});
     }
     //check if the username is already taken -> tricky
     const secondQuery = await userCollection.findOne({
@@ -55,7 +55,7 @@ router.post("/auth/signup", async (req, res) => {
     });
     if (secondQuery) {
       //notify the user that the username is already taken
-      res.status(400).json({success: true , message: "username is already taken"});
+      return res.status(400).json({success: true , message: "username is already taken"});
     }
     //hash the password
     //register the user
@@ -71,7 +71,7 @@ router.post("/auth/signup", async (req, res) => {
     });
 
     //return the necassary information
-    res.status(200).json({success: true, message: "You have successfully registered"});
+    return res.status(200).json({success: true, message: "You have successfully registered"});
   } catch (error) {
     console.log({err: error});
   }
