@@ -82,7 +82,7 @@ router.post("/auth/signup", async (req, res) => {
   }
 });
 
-router.get("/signin", (req, res) => {
+router.get("/auth/signin", (req, res) => {
   res.send("It works");
 });
 
