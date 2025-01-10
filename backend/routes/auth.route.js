@@ -86,6 +86,6 @@ router.get("/auth/signin", (req, res) => {
   res.send("It works");
 });
 
-router.post("/resetPassword", (req, res) => {});
+router.post("/auth/resetPassword", (req, res) => {});
 
 module.exports = router;
