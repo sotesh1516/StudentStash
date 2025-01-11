@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import Settings from "./components/Settings";
+import ConfirmationPage from "./components/ConfirmationPage";
 import {CartContext} from "./contexts/CartContext";
 import { useState } from "react";
 
@@ -43,6 +44,7 @@ const totalPrice = cartItems.reduce((total, item) => total + item.price * item.q
         <Routes>
           <Route path="/signup" element={<Signup/>}></Route>
           <Route path="/signin" element={<Signin/>}></Route>
+          <Route path='/confirm' element={<ConfirmationPage/>}></Route>
           <Route path="/dashboard" element={<Dashboard/>}></Route>
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
