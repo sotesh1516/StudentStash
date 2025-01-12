@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import eyeImage from '../images/eye.png';
 import "../style.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../api/auth.api';
 
 
@@ -14,6 +14,8 @@ export default function Signup() {
         password: "",
         error: false
     })
+
+    const navigate = useNavigate();
 
     //check to see if the email provided by the user is in the proper format
     function isValidEmail(email) {
@@ -34,7 +36,7 @@ export default function Signup() {
         setShowPassword(prev => !prev)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         if (!user.name || !user.email || !user.password || !user.username) {
             setMessage("All fields are required!")
@@ -67,7 +69,18 @@ export default function Signup() {
 
         }
         setUser({ ...user, error: false });
-        signup(user.name, user.username, user.email, user.password);
+
+        try {
+            const signUpQuery = await signup(user.name, user.username, user.email, user.password);
+
+            if (signUpQuery.success){
+                console.log(signUpQuery.message)
+                navigate('/confirm');
+            }
+        } catch (error) {
+            
+        }
+        
         
 
 
