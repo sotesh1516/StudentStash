@@ -38,7 +38,7 @@ router.post("/auth/signup", async (req, res) => {
     if (!regExResult) {
       //notify the user that the email format is not correct
       console.log("bad email format")
-      return res.status(400).json({success: false , message:"email format is incorrect"});
+      return res.status(400).json({success: false , message:"email format is incorrect!"});
 
     }
     const newUser = {
@@ -52,7 +52,7 @@ router.post("/auth/signup", async (req, res) => {
     const initialQuery = await userCollection.findOne({ email: newUser.email });
     if (initialQuery) {
 
-      return res.status(400).json({success: true , message: "email is already taken"});
+      return res.status(400).json({success: false , message: "email is already taken"});
     }
     //check if the username is already taken -> tricky
     const secondQuery = await userCollection.findOne({
@@ -60,7 +60,7 @@ router.post("/auth/signup", async (req, res) => {
     });
     if (secondQuery) {
       //notify the user that the username is already taken
-      return res.status(400).json({success: true , message: "username is already taken"});
+      return res.status(400).json({success: false , message: "username is already taken"});
     }
     //hash the password
     //register the user

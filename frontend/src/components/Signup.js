@@ -74,11 +74,14 @@ export default function Signup() {
             const signUpQuery = await signup(user.name, user.username, user.email, user.password);
 
             if (signUpQuery.success){
-                console.log(signUpQuery.message)
                 navigate('/confirm');
             }
+            else
+            {
+                setMessage(signUpQuery.message)
+            }
         } catch (error) {
-            
+            console.log(error)
         }
         
         
