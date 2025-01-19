@@ -79,6 +79,10 @@ export default function Signup() {
             else
             {
                 setMessage(signUpQuery.message)
+                setUser({
+                    ...user,
+                    error: true
+                });
             }
         } catch (error) {
             console.log(error)
@@ -92,7 +96,7 @@ export default function Signup() {
     return (
         <>
             <div className="flex items-center justify-center">
-                {user.error && (<div role="alert" className="alert alert-warning w-auto p-2 mt-3 inline-flex items-center justify-center">
+                {user.error && (<div role="alert" className="alert alert-warning w-auto p-2 mt-3 inline-flex items-center justify-center gap-1">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6 shrink-0 stroke-current"
